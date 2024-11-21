@@ -28,13 +28,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^8.1.4
   build_runner: ^2.4.13
+  cubit_form: ^2.0.5
   cupertino_icons: ^1.0.8
   dio: ^5.7.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_getit: ^3.0.1
   flutter_screenutil: ^5.9.3
   freezed: ^2.5.7
+  get_it: ^7.7.0
   json_annotation: ^4.9.0
   json_serializable: ^6.8.0
   pretty_dio_logger: ^1.4.0
@@ -55,8 +60,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -67,11 +72,15 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

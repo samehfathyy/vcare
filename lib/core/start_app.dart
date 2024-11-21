@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vcare/features/login/screens/login_screen.dart';
 import 'package:vcare/features/onboarding/screens/onboarding.dart';
 
 class StartApp extends StatelessWidget {
@@ -7,9 +8,10 @@ class StartApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
+    return const ScreenUtilInit(
       child: MaterialApp(
-        home: Onboarding(),
+        debugShowCheckedModeBanner: false,
+        home: LoginScreen(),
       ),
     );
   }
