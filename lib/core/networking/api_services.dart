@@ -4,6 +4,8 @@ import 'package:retrofit/http.dart';
 import 'package:vcare/core/networking/api_paths.dart';
 import 'package:vcare/features/login/models/login_request_body.dart';
 import 'package:vcare/features/login/models/login_response.dart';
+import 'package:vcare/features/signup/models/signup_request_body.dart';
+import 'package:vcare/features/signup/models/signup_response.dart';
 
 // Import the generated file
 part 'api_services.g.dart';
@@ -16,4 +18,10 @@ abstract class ApiServices {
   Future<LoginResponse> login(
     @Body() LoginRequestBody loginRequestBody,
   );
+  
+  @POST(ApiPaths.signup)
+  Future<SignupResponse> signup(
+    @Body() SignupRequestBody signuprequestbody,
+  );
+
 }

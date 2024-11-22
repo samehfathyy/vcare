@@ -38,6 +38,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_getit: ^3.0.1
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^1.0.0
   freezed: ^2.5.7
   get_it: ^7.7.0
   json_annotation: ^4.9.0
@@ -62,6 +63,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/images/
+    - images/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -80,7 +83,6 @@ flutter:
         - asset: assets/fonts/Poppins-SemiBold.ttf
         - asset: assets/fonts/Poppins-Bold.ttf
         - asset: assets/fonts/Poppins-ExtraBold.ttf
-
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
