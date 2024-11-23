@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/login/cubit/login_cubit.dart';
 import 'package:vcare/features/login/widgets/email_and_password.dart';
+import 'package:vcare/features/signup/screens/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -145,7 +146,14 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Center(
                     child: TextButton(
-                        onPressed: () {}, child: Text('resgister now'))),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignupScreen(),
+                              ));
+                        },
+                        child: Text('resgister now'))),
               ],
             ),
           ),
