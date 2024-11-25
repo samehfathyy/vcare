@@ -1,10 +1,9 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
+import 'package:vcare/core/theming/constants.dart';
 import 'package:vcare/core/theming/textstyles.dart';
-import 'package:vcare/core/widgets/textformfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/login/cubit/login_cubit.dart';
@@ -18,44 +17,59 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LoginCubit>(),
-      child: Scaffold(
-        backgroundColor: AppColors.white,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 15.w,
-          ),
-          child: SingleChildScrollView(
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColors.white,
+          body: Padding(
+            padding: EdgeInsets.only(
+              bottom: Constants.horizontalpadding,
+              left: Constants.horizontalpadding,
+              right: Constants.horizontalpadding,
+            ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                //Image.asset('assets/images/docdoc_logo_low_opacity.png'),
-                SizedBox(
-                  height: 50.h,
-                ),
-                Center(
-                  child: Text(
-                    'welcome back!',
-                    style: TextStyles.font26light,
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //Image.asset('assets/images/docdoc_logo_low_opacity.png'),
+                        SizedBox(
+                          height: 50.h,
+                        ),
+                        Center(
+                          child: Text(
+                            'welcome back!',
+                            style: TextStyles.font22dark,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        Center(
+                          child: Text(
+                            'We\'re excited to have you back.',
+                            style:
+                                TextStyles.font16dark.copyWith(fontSize: 13.sp),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40.h,
+                        ),
+                        const EmailAndPassword(),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        registerbutton(context),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                SizedBox(
-                  height: 5.h,
-                ),
-                Center(
-                  child: Text(
-                    'We\'re excited to have you back.',
-                    style: TextStyles.font16dark.copyWith(fontSize: 14.sp),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                const EmailAndPassword(),
-                SizedBox(
-                  height: 20.h,
-                ),
-
                 BlocBuilder<LoginCubit, LoginState>(
                   builder: (context, state) {
                     if (state is LoginInitial) {
@@ -71,7 +85,7 @@ class LoginScreen extends StatelessWidget {
                             Container(
                               width: 50.h,
                               height: 50.h,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: AppColors.mainpurple),
                             ),
@@ -86,10 +100,10 @@ class LoginScreen extends StatelessWidget {
                       );
                     }
                     if (state is LoginSuccess) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Home(),
+                            builder: (context) => const Home(),
                           ));
                     }
                     if (state is LoginFailed) {
@@ -110,10 +124,10 @@ class LoginScreen extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        'Login Failed. Please try again.',
+                                        state.errormsg,
                                         style: TextStyle(fontSize: 16.0),
                                       ),
-                                      SizedBox(height: 20.0),
+                                      const SizedBox(height: 20.0),
                                       TextButton(
                                         onPressed: () async {
                                           Navigator.of(context)
@@ -123,7 +137,7 @@ class LoginScreen extends StatelessWidget {
                                           //     .read<LoginCubit>()
                                           //     .login();
                                         },
-                                        child: Text('Retry'),
+                                        child: const Text('Retry'),
                                       ),
                                     ],
                                   ),
@@ -141,19 +155,6 @@ class LoginScreen extends StatelessWidget {
                     return const SizedBox();
                   },
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Center(
-                    child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignupScreen(),
-                              ));
-                        },
-                        child: Text('resgister now'))),
               ],
             ),
           ),
@@ -190,6 +191,30 @@ class LoginScreen extends StatelessWidget {
 
 //context.read<LoginCubit>().
 
+Widget registerbutton(BuildContext context) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        'Don\'t have an account?',
+        style: TextStyle(fontSize: 13.sp),
+      ),
+      TextButton(
+        style: TextButton.styleFrom(padding: EdgeInsets.all(8.w)),
+        onPressed: () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignupScreen(),
+              ));
+        },
+        child: Text('resgister now',
+            style: TextStyle(fontSize: 13.sp, color: AppColors.mainpurple)),
+      ),
+    ],
+  );
+}
+
 class InitialButton extends StatefulWidget {
   InitialButton({super.key, required this.width});
   double width;
@@ -208,16 +233,16 @@ class _InitialButtonState extends State<InitialButton> {
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
         width: widget.width,
-        height: 50.h,
+        height: Constants.buttonsheight,
         child: TextButton(
           onPressed: () async {
             if (context.read<LoginCubit>().formKey.currentState!.validate()) {
               if (!isShrinking) {
                 setState(() {
-                  widget.width = 50.h;
+                  widget.width = Constants.buttonsheight;
                   isShrinking = true; // Mark animation as in-progress
                 });
-                await Future.delayed(const Duration(milliseconds: 300));
+                //await Future.delayed(const Duration(milliseconds: 300));
                 context.read<LoginCubit>().login();
               } else {
                 //Reset the button if validation fails
@@ -233,7 +258,7 @@ class _InitialButtonState extends State<InitialButton> {
             padding: EdgeInsets.symmetric(vertical: 12.h),
           ),
           child: Text(
-            widget.width > 50.h ? 'Sign in' : '',
+            widget.width > Constants.buttonsheight ? 'Sign in' : '',
             style: TextStyles.font16light,
           ),
         ),

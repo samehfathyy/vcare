@@ -32,7 +32,9 @@ dependencies:
   build_runner: ^2.4.13
   cubit_form: ^2.0.5
   cupertino_icons: ^1.0.8
+  cupertino_radio_choice: ^1.0.2
   dio: ^5.7.0
+  firebase_core: ^3.8.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

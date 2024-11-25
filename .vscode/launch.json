@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+      {
+        "name": "production",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_production.dart",
+        "args": ["--flavor", "production", "--target", "lib/main_production.dart" ]
+      },
+      {
+        "name": "local",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_local.dart",
+        "args": ["--flavor", "local", "--target", "lib/main_local.dart" ]
+      },
+      
+    ],
+    "compounds": []
+  }

@@ -36,7 +36,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
           AppTextFormField(
             hintText: 'password',
             validator: (p) {
-              if (p == null || !AppRegex.isPasswordValid(p)) {
+              if (p == null) {
                 return 'not valid';
               }
             },

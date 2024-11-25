@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:vcare/core/networking/api_error_model.dart';
 import 'package:vcare/core/networking/api_paths.dart';
 
-
-
-
 // TODO: wallahy I will refactor this .. Omar Ahmed
 enum DataSource {
   NO_CONTENT,
@@ -32,6 +29,7 @@ class ResponseCode {
   static const int INTERNAL_SERVER_ERROR = 500; // failure, crash in server side
   static const int NOT_FOUND = 404; // failure, not found
   static const int API_LOGIC_ERROR = 422; // API , lOGIC ERROR
+  //static const int TOO_MANY_REQUESTS = 429; // API , lOGIC ERROR
 
   // local status code
   static const int CONNECT_TIMEOUT = -1;
@@ -146,7 +144,10 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.badResponse:
       if (error.response != null &&
           error.response?.statusCode != null &&
-          error.response?.statusMessage != null) {
+          error.response?.statusMessage != null
+          //new added by me
+          &&
+          error.response!.data is Map<String, dynamic>) {
         return ApiErrorModel.fromJson(error.response!.data);
       } else {
         return DataSource.DEFAULT.getFailure();
@@ -154,7 +155,8 @@ ApiErrorModel _handleError(DioException error) {
     case DioExceptionType.unknown:
       if (error.response != null &&
           error.response?.statusCode != null &&
-          error.response?.statusMessage != null) {
+          error.response?.statusMessage != null &&
+          error.response!.data is Map<String, dynamic>) {
         return ApiErrorModel.fromJson(error.response!.data);
       } else {
         return DataSource.DEFAULT.getFailure();

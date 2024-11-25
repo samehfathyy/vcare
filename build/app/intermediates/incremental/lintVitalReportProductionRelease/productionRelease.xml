@@ -1,0 +1,42 @@
+<variant
+    name="productionRelease"
+    package="com.example.vcare"
+    minSdkVersion="21"
+    targetSdkVersion="34"
+    shrinking="true"
+    mergedManifest="C:\Users\Public\vcare\build\app\intermediates\merged_manifest\productionRelease\AndroidManifest.xml"
+    manifestMergeReport="C:\Users\Public\vcare\build\app\outputs\logs\manifest-merger-production-release-report.txt"
+    proguardFiles="C:\Users\Public\vcare\build\app\intermediates\default_proguard_files\global\proguard-android.txt-8.1.0;C:\fluttersdk\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
+    partialResultsDir="C:\Users\Public\vcare\build\app\intermediates\lint_vital_partial_results\productionRelease\out">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifests="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\production\java;src\release\java;src\productionRelease\java;src\main\kotlin;src\production\kotlin;src\release\kotlin;src\productionRelease\kotlin"
+        resDirectories="src\main\res;src\production\res;src\release\res;src\productionRelease\res"
+        assetsDirectories="src\main\assets;src\production\assets;src\release\assets;src\productionRelease\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <resValues>
+    <resValue
+        type="string"
+        name="app_name"
+        value="vcare" />
+  </resValues>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <mainArtifact
+      classOutputs="C:\Users\Public\vcare\build\app\intermediates\javac\productionRelease\classes;C:\Users\Public\vcare\build\app\tmp\kotlin-classes\productionRelease;C:\Users\Public\vcare\build\app\kotlinToolingMetadata;C:\Users\Public\vcare\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\productionRelease\R.jar"
+      applicationId="com.example.vcare"
+      generatedSourceFolders="C:\Users\Public\vcare\build\app\generated\ap_generated_sources\productionRelease\out"
+      generatedResourceFolders="C:\Users\Public\vcare\build\app\generated\res\google-services\production\release;C:\Users\Public\vcare\build\app\generated\res\resValues\production\release"
+      desugaredMethodsFiles="C:\Users\IDEAPAD\.gradle\caches\transforms-3\fedc15453e4b4f3a18908281a4241535\transformed\D8BackportedDesugaredMethods.txt">
+  </mainArtifact>
+</variant>
