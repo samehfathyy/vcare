@@ -26,14 +26,14 @@ class SignupCubit extends Cubit<SignupState> {
     currentscreenindex = 1;
     pageController.animateToPage(1,
         duration: const Duration(milliseconds: 300), curve: Curves.linear);
-    emit(state);
+    emit(SignupInitial());
   }
 
   void previouspage() {
     currentscreenindex = 0;
     pageController.animateToPage(0,
         duration: const Duration(milliseconds: 300), curve: Curves.linear);
-    emit(state);
+    emit(SignupInitial());
   }
 
   Future<void> signup() async {
@@ -43,12 +43,13 @@ class SignupCubit extends Cubit<SignupState> {
     String name =
         "${firstnametextcontroller.text} ${lastnametextcontroller.text}";
     final SignupRequestBody signupRequestBody = SignupRequestBody(
-        name: firstnametextcontroller.text,
+        name: name,
         email: emialtextcontroller.text,
         phone: phonetextcontroller.text,
         password: passwordtextcontroller.text,
         passwordConfirmation: passwordconfirmationtextcontroller.text,
         gender: gender);
+
     try {
       ApiResult response = await signupRepo.signupRepo(signupRequestBody);
       response.when(
@@ -62,5 +63,20 @@ class SignupCubit extends Cubit<SignupState> {
     } catch (e) {
       emit(Signupfailed(errormsg: e.toString()));
     }
+  }
+
+  @override
+  Future<void> close() {
+    // Dispose of all the controllers
+    firstnametextcontroller.dispose();
+    lastnametextcontroller.dispose();
+    emialtextcontroller.dispose();
+    phonetextcontroller.dispose();
+    passwordtextcontroller.dispose();
+    passwordconfirmationtextcontroller.dispose();
+    gendertextcontroller.dispose();
+    pageController.dispose();
+
+    return super.close();
   }
 }

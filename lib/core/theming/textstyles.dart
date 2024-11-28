@@ -32,9 +32,9 @@ class TextStyles {
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700);
 
-  static TextStyle font14dark = TextStyle(
-      fontSize: 22.sp,
-      color: AppColors.black,
+  static TextStyle font13dark = TextStyle(
+      fontSize: 13.sp,
+      color: AppColors.darkgray,
       fontFamily: 'Poppins',
-      fontWeight: FontWeight.w700);
+      fontWeight: FontWeight.w400);
 }

@@ -6,5 +6,5 @@ import 'package:vcare/core/start_app.dart';
 void main() async{
   setupgetit();
   await ScreenUtil.ensureScreenSize();
-  runApp(const StartApp());
+  runApp( StartApp());
 }

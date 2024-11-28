@@ -15,6 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
   final formKey = GlobalKey<FormState>();
 
   Future<void> login() async {
+    emit(LoginInitial());
     emit(LoginLoading());
     final loginrequestbody = LoginRequestBody(
         email: emialtextcontroller.text, password: passwordtextcontroller.text);
@@ -24,5 +25,13 @@ class LoginCubit extends Cubit<LoginState> {
     }, failure: (error) {
       emit(LoginFailed(errormsg: error.apiErrorModel.message ?? ''));
     });
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    emialtextcontroller.dispose();
+    passwordtextcontroller.dispose();
+    return super.close();
   }
 }

@@ -1,4 +1,4 @@
-#Mon Nov 25 00:08:22 EET 2024
+#Tue Nov 26 21:06:40 EET 2024
 base.0=C\:\\Users\\Public\\vcare\\build\\app\\intermediates\\dex\\productionRelease\\minifyProductionReleaseWithR8\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

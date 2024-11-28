@@ -14,6 +14,7 @@ class EmailAndPassword extends StatefulWidget {
 }
 
 class _EmailAndPasswordState extends State<EmailAndPassword> {
+  bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -42,6 +43,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             },
             controller: context.read<LoginCubit>().passwordtextcontroller,
             backgroundColor: AppColors.white,
+            isObscureText: true,
           ),
         ],
       ),

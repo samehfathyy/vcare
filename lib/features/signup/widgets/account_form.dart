@@ -48,6 +48,7 @@ class _AccountFormState extends State<AccountForm> {
             ),
             AppTextFormField(
               hintText: 'Password',
+              isObscureText: true,
               validator: (p) {
                 if (p == null || !AppRegex.isPasswordValid(p)) {
                   return 'Please enter a valid password';
@@ -61,6 +62,7 @@ class _AccountFormState extends State<AccountForm> {
             ),
             AppTextFormField(
               hintText: 'Password Confirmation',
+              isObscureText: true,
               validator: (value) {
                 if (context.read<SignupCubit>().passwordtextcontroller.text !=
                     value) {

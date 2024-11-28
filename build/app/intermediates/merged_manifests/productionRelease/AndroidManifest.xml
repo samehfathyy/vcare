@@ -22,6 +22,8 @@
         </intent>
     </queries>
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <permission
         android:name="com.example.vcare.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />

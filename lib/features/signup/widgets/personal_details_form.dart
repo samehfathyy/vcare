@@ -44,6 +44,7 @@ class _PersonalDetailsFormState extends State<PersonalDetailsForm> {
                 },
                 controller: context.read<SignupCubit>().firstnametextcontroller,
                 backgroundColor: AppColors.white,
+                autofocus: true,
               ),
               SizedBox(
                 height: 10.h,
@@ -77,4 +78,6 @@ class _PersonalDetailsFormState extends State<PersonalDetailsForm> {
       ),
     );
   }
+
+  
 }

@@ -19,7 +19,7 @@ class DioFactory {
         ..options.connectTimeout = timeOut
         ..options.receiveTimeout = timeOut;
       //addDioHeaders();
-       (dio?.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+       (dio?.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
