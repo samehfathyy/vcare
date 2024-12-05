@@ -23,6 +23,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         children: [
           AppTextFormField(
             hintText: 'email',
+            textInputType: TextInputType.emailAddress,
             validator: (value) {
               if (value == null || !AppRegex.isEmailValid(value)) {
                 return 'not valid email';

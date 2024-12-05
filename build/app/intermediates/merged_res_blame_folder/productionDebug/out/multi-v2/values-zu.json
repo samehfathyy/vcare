@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-29:/values-zu/values-zu.xml",
+            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-32:/values-zu/values-zu.xml",
             "map": [
                 {
                     "source": "C:\\Users\\IDEAPAD\\.gradle\\caches\\transforms-3\\25303bfa731ad2ab17d3513b6410954f\\transformed\\core-1.13.1\\res\\values-zu\\values-zu.xml",

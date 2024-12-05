@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-29:/values-uk/values-uk.xml",
+            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-32:/values-uk/values-uk.xml",
             "map": [
                 {
                     "source": "C:\\Users\\IDEAPAD\\.gradle\\caches\\transforms-3\\c0acdb96f3544722b4ad61ef1c790068\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-uk\\values.xml",

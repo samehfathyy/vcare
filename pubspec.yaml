@@ -41,6 +41,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   flutter_getit: ^3.0.1
   flutter_screenutil: ^5.9.3
+  flutter_secure_storage: ^9.2.2
   flutter_svg: ^1.0.0
   freezed: ^2.5.7
   get_it: ^7.7.0
@@ -49,6 +50,8 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   retrofit: ^4.4.1
   retrofit_generator: ^9.1.5
+  shared_preferences: ^2.3.3
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -67,8 +70,9 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/specsicons/
     - assets/svgs/
-  #   - images/a_dot_ham.jpeg
+    #- images/doctor.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see

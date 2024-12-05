@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-29:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.example.vcare.app-mergeProductionDebugResources-32:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Public\\vcare\\android\\app\\src\\main\\res\\values-night\\styles.xml",

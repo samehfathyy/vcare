@@ -2,6 +2,7 @@ import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:vcare/core/helper/app_regex.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
@@ -23,18 +24,8 @@ class _PersonalDetailsFormState extends State<PersonalDetailsForm> {
         child: Form(
           key: context.read<SignupCubit>().personalinfoformKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 10.h,
-              ),
-              Text(
-                'Personal Information',
-                style: TextStyles.font22dark,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
               AppTextFormField(
                 hintText: 'First Name',
                 validator: (value) {
@@ -64,6 +55,32 @@ class _PersonalDetailsFormState extends State<PersonalDetailsForm> {
               ),
               AppTextFormField(
                 hintText: 'Phone Number',
+                preFixIcon: SizedBox(
+                  width: 60.w,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 13.w,
+                      ),
+                      Icon(
+                        Icons.phone_iphone,
+                        size: 22.sp,
+                      ),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Container(
+                        width: 1.w,
+                        height: 40.h,
+                        color: AppColors.darkgray,
+                      ),
+                      SizedBox(
+                        width: 5.w,
+                      ),
+                    ],
+                  ),
+                ),
+                textInputType: TextInputType.number,
                 validator: (p) {
                   if (p == null || !AppRegex.isPhoneNumberValid(p)) {
                     return 'Please enter a valid Phone Number';
@@ -72,12 +89,13 @@ class _PersonalDetailsFormState extends State<PersonalDetailsForm> {
                 controller: context.read<SignupCubit>().phonetextcontroller,
                 backgroundColor: AppColors.white,
               ),
+              SizedBox(
+                height: 10.h,
+              ),
             ],
           ),
         ),
       ),
     );
   }
-
-  
 }

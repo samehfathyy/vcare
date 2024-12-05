@@ -23,18 +23,11 @@ class _AccountFormState extends State<AccountForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            Text(
-              'Account Information',
-              style: TextStyles.font22dark,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
             AppTextFormField(
               hintText: 'Email',
+              focusnode: context.read<SignupCubit>().emailfieldfocusnode,
+              autofocus: true,
+              textInputType: TextInputType.emailAddress,
               validator: (value) {
                 if (value == null || !AppRegex.isEmailValid(value)) {
                   return 'Please enter a valid email address';
@@ -51,7 +44,7 @@ class _AccountFormState extends State<AccountForm> {
               isObscureText: true,
               validator: (p) {
                 if (p == null || !AppRegex.isPasswordValid(p)) {
-                  return 'Please enter a valid password';
+                  return 'Password must be at least 8 characters long, include a capital letter, a number, and a special symbol (@,\$,!,%,*,?,&).';
                 }
               },
               controller: context.read<SignupCubit>().passwordtextcontroller,

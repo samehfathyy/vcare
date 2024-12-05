@@ -4,23 +4,25 @@ class sliverpinnedwidgetdelegate extends SliverPersistentHeaderDelegate {
   final Widget child;
   final double height;
 
-  sliverpinnedwidgetdelegate(this.height, {required this.child});
+  sliverpinnedwidgetdelegate({required this.child, required this.height});
+
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    // TODO: implement build
-    return child;
+    return SizedBox(
+      height: height, // Ensure the child is constrained to the height
+      child: child,
+    );
   }
 
   @override
-  // TODO: implement maxExtent
   double get maxExtent => height;
+
   @override
-  // TODO: implement minExtent
   double get minExtent => height;
+
   @override
   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
-    return false;
+    return false; // Return true if the delegate changes should rebuild
   }
 }

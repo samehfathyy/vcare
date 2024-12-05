@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:vcare/core/networking/api_result.dart';
+import 'package:vcare/core/helper/shared_pref_helper.dart';
+import 'package:vcare/core/networking/dio_factory.dart';
 import 'package:vcare/features/signup/models/signup_request_body.dart';
 import 'package:vcare/features/signup/models/signup_response.dart';
 import 'package:vcare/features/signup/repo/signup_repo.dart';
@@ -10,6 +11,7 @@ part 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.signupRepo) : super(SignupInitial());
   final SignupRepo signupRepo;
+
   TextEditingController firstnametextcontroller = TextEditingController();
   TextEditingController lastnametextcontroller = TextEditingController();
   TextEditingController emialtextcontroller = TextEditingController();
@@ -20,8 +22,10 @@ class SignupCubit extends Cubit<SignupState> {
   TextEditingController gendertextcontroller = TextEditingController();
   final personalinfoformKey = GlobalKey<FormState>();
   final accountinfoformKey = GlobalKey<FormState>();
+  final FocusNode emailfieldfocusnode = FocusNode();
   final PageController pageController = PageController();
   int currentscreenindex = 0;
+
   void nextpage() {
     currentscreenindex = 1;
     pageController.animateToPage(1,
@@ -50,19 +54,19 @@ class SignupCubit extends Cubit<SignupState> {
         passwordConfirmation: passwordconfirmationtextcontroller.text,
         gender: gender);
 
-    try {
-      ApiResult response = await signupRepo.signupRepo(signupRequestBody);
-      response.when(
-        success: (data) {
-          emit(Signupsuccess(signupResponse: data));
-        },
-        failure: (errormsg) {
-          emit(Signupfailed(errormsg: errormsg.apiErrorModel.message ?? ''));
-        },
-      );
-    } catch (e) {
-      emit(Signupfailed(errormsg: e.toString()));
-    }
+    final response = await signupRepo.signupRepo(signupRequestBody);
+    response.when(
+      success: (signupresponse) async{
+        await SharedPrefHelper.setSecuredString(
+            SharedPrefHelper.userToken, signupresponse.data.token);
+        await SharedPrefHelper.setData(SharedPrefHelper.loggedIn, true);
+        await DioFactory.setTokenIntoHeaderAfterLogin();
+        emit(Signupsuccess(signupResponse: signupresponse));
+      },
+      failure: (errormsg) {
+        emit(Signupfailed(errormsg: errormsg.apiErrorModel.message ?? ''));
+      },
+    );
   }
 
   @override

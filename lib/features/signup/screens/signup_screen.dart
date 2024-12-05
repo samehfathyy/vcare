@@ -1,9 +1,10 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
-import 'package:vcare/core/theming/constants.dart';
+import 'package:vcare/core/theming/app_sizes.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/widgets/app_dialog.dart';
 import 'package:vcare/features/home/screens/home.dart';
@@ -29,11 +30,39 @@ class _SignupScreenState extends State<SignupScreen> {
           body: SafeArea(
             child: Padding(
               padding: EdgeInsets.only(
-                  left: Constants.horizontalpadding,
-                  right: Constants.horizontalpadding,
-                  bottom: Constants.horizontalpadding),
+                  left: Appsizes.horizontalpadding,
+                  right: Appsizes.horizontalpadding,
+                  bottom: Appsizes.horizontalpadding),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 6.w, vertical: 12.h),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        // SvgPicture.asset(
+                        //   'assets/svgs/docdoc_logo.svg',
+                        //   width: 35.w,
+                        //   height: 35.w,
+                        // ),
+                        Icon(
+                          Icons.account_circle,
+                          size: 30.sp,
+                        ),
+                        SizedBox(
+                          width: 6.h,
+                        ),
+                        Text('Create Account', style: TextStyles.font22dark
+                            // .copyWith(color: AppColors.mainpurple),
+                            ),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: BlocBuilder<SignupCubit, SignupState>(
                       builder: (context, state) {
@@ -50,9 +79,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   BlocListener<SignupCubit, SignupState>(
-                    listener: (context, state) {
+                    listener: (context, state) async{
                       if (state is Signuploading) {
-                        appDialog(
+                        await appDialog(
                           context: context,
                           title: 'Signing up...',
                           alertdialog: false,
@@ -61,16 +90,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       } else if (state is Signupsuccess) {
                         Future.delayed(const Duration(seconds: 1), () {
                           Navigator.of(context).pop();
-                          appDialog(
-                            context: context,
-                            title: 'Error occurred',
-                            alertdialog: true,
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 50.w,
-                            ),
-                          );
+
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -99,13 +119,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       builder: (context, state) {
                         return SizedBox(
                           width: double.infinity,
-                          height: Constants.buttonsheight,
+                          height: Appsizes.buttonsheight,
                           child: Row(
                             children: [
                               //back button
                               SizedBox(
-                                width: Constants.buttonsheight,
-                                height: Constants.buttonsheight,
+                                width: Appsizes.buttonsheight,
+                                height: Appsizes.buttonsheight,
                                 child: IconButton(
                                   onPressed: () {
                                     if (context
@@ -114,20 +134,22 @@ class _SignupScreenState extends State<SignupScreen> {
                                         0) {
                                       Navigator.of(context)
                                           .pushReplacement(MaterialPageRoute(
-                                        builder: (context) => LoginScreen(),
+                                        builder: (context) =>
+                                            const LoginScreen(),
                                       ));
                                     } else {
                                       context
                                           .read<SignupCubit>()
                                           .previouspage();
+                                      FocusScope.of(context).unfocus();
                                     }
                                   },
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.keyboard_arrow_left,
                                     color: AppColors.white,
                                     size: 30,
                                   ),
-                                  padding: EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(0),
                                   style: IconButton.styleFrom(
                                     backgroundColor: AppColors.black,
                                   ),
@@ -138,7 +160,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                               Expanded(
                                 child: SizedBox(
-                                  height: Constants.buttonsheight,
+                                  height: Appsizes.buttonsheight,
                                   child: TextButton(
                                     onPressed: () async {
                                       if (context
@@ -150,6 +172,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                               .personalinfoformKey
                                               .currentState!
                                               .validate()) {
+                                        //next//
+                                        FocusScope.of(context).unfocus();
+                                        context
+                                            .read<SignupCubit>()
+                                            .emailfieldfocusnode
+                                            .requestFocus();
                                         context.read<SignupCubit>().nextpage();
                                       } else if (context
                                                   .read<SignupCubit>()
@@ -160,11 +188,16 @@ class _SignupScreenState extends State<SignupScreen> {
                                               .accountinfoformKey
                                               .currentState!
                                               .validate()) {
+                                        //sign up//
                                         await context
                                             .read<SignupCubit>()
                                             .signup();
                                       }
                                     },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: AppColors.mainpurple,
+                                      //padding: EdgeInsets.symmetric(vertical: 12.h),
+                                    ),
                                     child: Text(
                                       context
                                                   .read<SignupCubit>()
@@ -173,10 +206,6 @@ class _SignupScreenState extends State<SignupScreen> {
                                           ? 'Next'
                                           : 'Sign up',
                                       style: TextStyles.font16light,
-                                    ),
-                                    style: TextButton.styleFrom(
-                                      backgroundColor: AppColors.mainpurple,
-                                      //padding: EdgeInsets.symmetric(vertical: 12.h),
                                     ),
                                   ),
                                 ),
