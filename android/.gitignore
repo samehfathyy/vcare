@@ -11,3 +11,17 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+# Ignore build outputs and APK files
+build/
+*.apk
+*.aab
+
+# Dart dependencies
+.dart_tool/
+.packages
+pubspec.lock
+
+# IDE settings
+.idea/
+.vscode/
+
