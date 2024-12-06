@@ -37,5 +37,8 @@ void setupgetit() async {
   getIt.registerLazySingleton<UserProfileRepo>(() => UserProfileRepo(getIt()));
   getIt.registerFactory<UserprofileCubit>(() => UserprofileCubit(getIt()));
   getIt.registerFactory<CheckInternetCubit>(() => CheckInternetCubit());
+
+  //appointment
+  
   
 }

@@ -3,6 +3,7 @@ import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:vcare/core/networking/api_paths.dart';
 import 'package:vcare/core/networking/user_profile_response_model.dart';
+import 'package:vcare/features/appointment/appointment_response.dart';
 import 'package:vcare/features/login/models/login_request_body.dart';
 import 'package:vcare/features/login/models/login_response.dart';
 import 'package:vcare/features/signup/models/signup_request_body.dart';
@@ -27,7 +28,10 @@ abstract class ApiServices {
 
   @GET(ApiPaths.userprofile)
   Future<UserProfileResponseModel> userprofile(
-    
+  );
+
+  @GET(ApiPaths.appointment)
+  Future<AppointmentResponse> getallappointments(
   );
 
 }
