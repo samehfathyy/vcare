@@ -1,11 +1,8 @@
 import 'package:cubit_form/cubit_form.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:vcare/core/helper/app_regex.dart';
 import 'package:vcare/core/theming/colors.dart';
-import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/widgets/textformfield.dart';
 import 'package:vcare/features/signup/cubit/cubit/signup_cubit.dart';
 

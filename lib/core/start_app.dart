@@ -1,15 +1,11 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/networking/check%20internet/cubit/check_internet_cubit.dart';
-import 'package:vcare/core/networking/check_internet.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/theming/theming%20helper/sliverpinnedwidgetdelegate.dart';
-import 'package:vcare/core/widgets/app_dialog.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/login/screens/login_screen.dart';
@@ -44,13 +40,13 @@ class _StartAppState extends State<StartApp> {
           home: BlocBuilder<CheckInternetCubit, CheckInternetState>(
             builder: (context, state) {
               if (state is CheckInternetLoading) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else if (state is CheckInternetSuccess && widget.loggedIn) {
-                return Home();
+                return const Home();
               } else if (state is CheckInternetSuccess && !widget.loggedIn) {
-                return LoginScreen();
+                return const LoginScreen();
               } else {
-                return retryscreen();
+                return const retryscreen();
               }
             },
           ),
@@ -83,7 +79,7 @@ class retryscreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  Text(
+                  const Text(
                     'it seems there is something wrong with\nyour internet connection',
                     textAlign: TextAlign.center,
                   ),
@@ -96,31 +92,31 @@ class retryscreen extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return Dialog(
+                        return const Dialog(
+                          backgroundColor: Colors.transparent,
                           child: Center(
                               child: CircularProgressIndicator(
                             color: AppColors.mainpurple,
                           )),
-                          backgroundColor: Colors.transparent,
                         );
                       },
                     );
                     Future.delayed(
-                      Duration(milliseconds: 1200),
+                      const Duration(milliseconds: 1200),
                       () {
                         Navigator.of(context).pop();
                         context.read<CheckInternetCubit>().checkinternet();
                       },
                     );
                   },
-                  child: Text(
-                    'Try again',
-                    style: TextStyles.font16light,
-                  ),
                   style: TextButton.styleFrom(
                       backgroundColor: AppColors.mainpurple,
                       padding: EdgeInsets.symmetric(
                           horizontal: 40.w, vertical: 10.h)),
+                  child: Text(
+                    'Try again',
+                    style: TextStyles.font16light,
+                  ),
                 ),
               ),
             ],
@@ -191,7 +187,7 @@ class _testState extends State<test> {
 }
 
 class MyWidget extends StatefulWidget {
-  MyWidget({super.key});
+  const MyWidget({super.key});
 
   @override
   State<MyWidget> createState() => _MyWidgetState();

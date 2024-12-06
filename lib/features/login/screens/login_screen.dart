@@ -38,7 +38,7 @@ class LoginScreen extends StatelessWidget {
                     height: 60.h,
                   ),
                 ),
-                SliverToBoxAdapter(child: LogoAndTitle()),
+                const SliverToBoxAdapter(child: LogoAndTitle()),
 
                 SliverToBoxAdapter(
                   child: SizedBox(
@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const SliverToBoxAdapter(child: EmailAndPassword()),
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: RememberMe(),
                 ),
                 SliverToBoxAdapter(

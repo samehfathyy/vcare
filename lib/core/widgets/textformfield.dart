@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vcare/core/theming/colors.dart';
-import 'package:vcare/core/theming/app_sizes.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 
 class AppTextFormField extends StatefulWidget {

@@ -1,7 +1,6 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/app_sizes.dart';

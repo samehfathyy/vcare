@@ -1,14 +1,12 @@
-import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
-import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/repo/specializations_map.dart';
 
 class SpecCircleAndText extends StatefulWidget {
-  SpecCircleAndText({
+  const SpecCircleAndText({
     super.key,
     required this.index,
     required this.name,
@@ -55,7 +53,7 @@ class _SpecCircleAndTextState extends State<SpecCircleAndText> {
               //height: 60.w,
               padding: EdgeInsets.all(12.w),
               alignment: Alignment.center,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   // border: Border.all(
                   //   width: 2,
                   //   color: widget.selected == widget.index

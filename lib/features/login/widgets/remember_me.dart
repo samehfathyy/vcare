@@ -6,7 +6,7 @@ import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/features/login/cubit/login_cubit.dart';
 
 class RememberMe extends StatefulWidget {
-  RememberMe({super.key});
+  const RememberMe({super.key});
 
   @override
   State<RememberMe> createState() => _RememberMeState();

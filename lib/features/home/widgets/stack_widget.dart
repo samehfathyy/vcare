@@ -21,7 +21,7 @@ class StackWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(14),
                   //color: AppColors.mainpurple,
-                  image: DecorationImage(
+                  image: const DecorationImage(
                       fit: BoxFit.fill,
                       image:
                           AssetImage('assets/images/home_blue_pattern.png'))),
@@ -38,14 +38,14 @@ class StackWidget extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {},
+                    style: TextButton.styleFrom(
+                        backgroundColor: AppColors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 20.w)),
                     child: Text(
                       'Find Nearby',
                       style: TextStyles.font13darkgray.copyWith(
                           color: AppColors.black, fontWeight: FontWeight.w600),
                     ),
-                    style: TextButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 20.w)),
                   )
                 ],
               ),

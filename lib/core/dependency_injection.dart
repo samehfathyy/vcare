@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 import 'package:vcare/core/networking/api_services.dart';
 import 'package:vcare/core/networking/check%20internet/cubit/check_internet_cubit.dart';
 import 'package:vcare/core/networking/dio_factory.dart';
+import 'package:vcare/features/appointment/appointment_repo.dart';
+import 'package:vcare/features/appointment/cubit/appointment_cubit.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/api/home_api_service.dart';
 import 'package:vcare/features/home/data/repo/home_repo.dart';
@@ -39,6 +41,6 @@ void setupgetit() async {
   getIt.registerFactory<CheckInternetCubit>(() => CheckInternetCubit());
 
   //appointment
-  
-  
+  getIt.registerLazySingleton<AppointmentRepo>(() => AppointmentRepo(getIt()));
+  getIt.registerFactory<AppointmentCubit>(() => AppointmentCubit(getIt()));
 }

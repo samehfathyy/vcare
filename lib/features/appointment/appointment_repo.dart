@@ -5,7 +5,7 @@ import 'package:vcare/features/appointment/appointment_response.dart';
 
 class AppointmentRepo {
   final ApiServices _apiServices;
-  AppointmentRepo({required ApiServices apiServices}) : _apiServices = apiServices;
+  AppointmentRepo(this._apiServices);
   Future<ApiResult<AppointmentResponse>> getappointments()async{
     try{
     final result = await _apiServices.getallappointments();

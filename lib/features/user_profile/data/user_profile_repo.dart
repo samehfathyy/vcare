@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:vcare/core/networking/api_error_handler.dart';
 import 'package:vcare/core/networking/api_result.dart';
 import 'package:vcare/core/networking/api_services.dart';

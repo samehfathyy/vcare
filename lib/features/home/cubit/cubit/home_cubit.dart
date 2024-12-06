@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:vcare/core/helper/shared_pref_helper.dart';
-import 'package:vcare/core/networking/api_error_handler.dart';
 import 'package:vcare/core/networking/dio_factory.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
 import 'package:vcare/features/home/data/repo/home_repo.dart';

@@ -1,26 +1,18 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:vcare/core/dependency_injection.dart';
-import 'package:vcare/core/helper/shared_pref_helper.dart';
-import 'package:vcare/core/networking/dio_factory.dart';
-import 'package:vcare/core/start_app.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/theming/theming%20helper/sliverpinnedwidgetdelegate.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
-import 'package:vcare/features/home/data/repo/specializations_map.dart';
 import 'package:vcare/features/home/widgets/doctor_widget.dart';
 import 'package:vcare/features/home/widgets/side_menu.dart';
 import 'package:vcare/features/home/widgets/spec_circle_and_text.dart';
 import 'package:vcare/features/home/widgets/stack_widget.dart';
 import 'package:vcare/features/login/screens/login_screen.dart';
 import 'package:vcare/features/user_profile/data/cubit/cubit/userprofile_cubit.dart';
-import 'package:vcare/features/user_profile/data/user_profile_repo.dart';
 
 Widget spacer() {
   return Container(
@@ -91,7 +83,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         key: _scaffoldKey,
         backgroundColor: AppColors.lightgray,
-        endDrawer: SideMenu(),
+        endDrawer: const SideMenu(),
         body: MultiBlocProvider(
           providers: [
             BlocProvider(create: (context) {
@@ -105,7 +97,7 @@ class _HomeState extends State<Home> {
               slivers: [
                 SliverToBoxAdapter(
                   child: BlocListener<UserprofileCubit, UserprofileState>(
-                    child: SizedBox(),
+                    child: const SizedBox(),
                     listenWhen: (previous, current) =>
                         current is UserprofileFailed,
                     listener: (context, state) async {
@@ -115,7 +107,7 @@ class _HomeState extends State<Home> {
                         //     SharedPrefHelper.loggedIn, false);
 
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => const LoginScreen(),
                         ));
                       }
                     },
@@ -190,7 +182,7 @@ class _HomeState extends State<Home> {
                                     children: [
                                       Container(
                                         width: 32.w,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           color: AppColors.darkgray2,
                                           shape: BoxShape.circle,
                                           // border: Border.all(
@@ -203,7 +195,7 @@ class _HomeState extends State<Home> {
                                           _scaffoldKey.currentState!
                                               .openEndDrawer();
                                         },
-                                        icon: Icon(
+                                        icon: const Icon(
                                           Icons.person,
                                           color: AppColors.lightgray,
                                         ),
@@ -219,7 +211,7 @@ class _HomeState extends State<Home> {
                       height: 55.h),
                 ),
 
-                SliverToBoxAdapter(
+                const SliverToBoxAdapter(
                   child: StackWidget(),
                 ),
 
@@ -324,7 +316,7 @@ class _HomeState extends State<Home> {
                                         itemBuilder: (context, index) {
                                           return Padding(
                                             padding: EdgeInsets.only(left: 8.w),
-                                            child: speccircleshimmer(),
+                                            child: const speccircleshimmer(),
                                           );
                                         })),
                               ],
@@ -354,7 +346,7 @@ class _HomeState extends State<Home> {
                             Doctor doctor = state.doctorlist[index]!;
                             return DoctorWidget(doctor: doctor);
                           }
-                          return Center(
+                          return const Center(
                             child: Text('No Doctors found'),
                           );
                         },
@@ -364,13 +356,13 @@ class _HomeState extends State<Home> {
                     return SliverList.builder(
                       itemCount: 6,
                       itemBuilder: (context, index) {
-                        return doctorwidgetshimmer();
+                        return const doctorwidgetshimmer();
                       },
                     );
                   },
                 ),
                 //to fill any remaining space when scrolling
-                SliverFillRemaining(
+                const SliverFillRemaining(
                   child: SizedBox(),
                 )
               ],

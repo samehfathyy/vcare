@@ -57,7 +57,7 @@ class SideMenu extends StatelessWidget {
                                     Container(
                                       width: 40.w,
                                       height: 40.w,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         color: AppColors.mainpurple,
                                         shape: BoxShape.circle,
                                       ),
@@ -93,7 +93,7 @@ class SideMenu extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.calendar_month,
                             color: AppColors.darkgray2,
                           ),
@@ -109,7 +109,7 @@ class SideMenu extends StatelessWidget {
                       spacer(),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.rate_review_rounded,
                             color: AppColors.darkgray2,
                           ),
@@ -125,7 +125,7 @@ class SideMenu extends StatelessWidget {
                       spacer(),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.account_box,
                             color: AppColors.darkgray2,
                           ),
@@ -141,7 +141,7 @@ class SideMenu extends StatelessWidget {
                       spacer(),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.settings,
                             color: AppColors.darkgray2,
                           ),
@@ -189,7 +189,7 @@ class SideMenu extends StatelessWidget {
                               SizedBox(
                                 width: 10.w,
                               ),
-                              Icon(
+                              const Icon(
                                 Icons.logout,
                                 color: Colors.red,
                               ),
@@ -201,12 +201,12 @@ class SideMenu extends StatelessWidget {
               );
             }
             return Shimmer.fromColors(
+                baseColor: AppColors.gray,
+                highlightColor: AppColors.lightgray,
                 child: Expanded(
                     child: Container(
                   color: Colors.white,
-                )),
-                baseColor: AppColors.gray,
-                highlightColor: AppColors.lightgray);
+                )));
           },
         ),
       ),
