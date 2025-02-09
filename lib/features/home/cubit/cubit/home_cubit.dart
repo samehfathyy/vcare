@@ -13,41 +13,39 @@ class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeRepo) : super(HomeInitial());
 
   Future<void> getdata() async {
-    print('getdata getdata getdata');
+    ///emit(DoctorsLoading());
+    print('loading state');
+    emit(HomeLoading());
     final result = await _homeRepo.gethomedata();
+    print('result done');
     await DioFactory.setTokenIntoHeaderAfterLogin();
     result.when(
       success: (data) {
         final specializationslist = data.specializationdata;
+        final doctors = specializationslist?[selectedspec].doctors ?? [];
         allspecializations = specializationslist;
-        filterdoctors(0);
-        emit(HomeSuccess(specializationslist ?? []));
+        emit(HomeSuccess(specializationslist ?? [], doctors));
       },
       failure: (errorHandler) {
         emit(HomeFailed(errormsg: errorHandler.apiErrorModel.message ?? ''));
+        print('faiiled emitted');
       },
     );
   }
 
   void filterdoctors(int index) {
-    print('filter filter filter1');
-    emit(DoctorsLoading());
     //print(allspecializations!.length.toString());
-    try {
-      //if (index < allspecializations!.length && index >= 0) {
-      List<Doctor?> doctors = allspecializations![index]!.doctors ?? [];
-      emit(DoctorsSuccess(doctors));
-
-      print('filter filter filter ${doctors.length}');
-      // } else {
-      //   emit(DoctorsFailed(errormsg: 'Error occured'));
-      // }
-    } catch (e) {
-      emit(DoctorsFailed(errormsg: 'Error occured'));
-    }
+    selectedspec = index;
+    //if (index < allspecializations!.length && index >= 0) {
+    List<Doctor?> doctors = allspecializations![index]!.doctors ?? [];
+    emit(HomeSuccess(allspecializations ?? [], doctors));
+    // } else {
+    //   emit(DoctorsFailed(errormsg: 'Error occured'));
+    // }
   }
 
   void refreshspecslist() {
-    emit(HomeSuccess(allspecializations ?? []));
+    emit(HomeSuccess(
+        allspecializations ?? [], allspecializations![2]!.doctors ?? []));
   }
 }

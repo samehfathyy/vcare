@@ -24,6 +24,7 @@ class LoginCubit extends Cubit<LoginState> {
         email: emialtextcontroller.text, password: passwordtextcontroller.text);
     final response = await _loginRepo.loginrepo(loginrequestbody);
     response.when(success: (loginresponse) async {
+      
         await SharedPrefHelper.setSecuredString(
             SharedPrefHelper.userToken, loginresponse.data.token);
       await DioFactory.setTokenIntoHeaderAfterLogin();
@@ -33,6 +34,7 @@ class LoginCubit extends Cubit<LoginState> {
       await SharedPrefHelper.clearAllSecuredData();
       }
       emit(LoginSuccess(loginResponse: loginresponse));
+
     }, failure: (error) {
       emit(LoginFailed(errormsg: error.apiErrorModel.message ?? ''));
     });

@@ -1,25 +1,52 @@
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 part 'check_internet_state.dart';
 
 class CheckInternetCubit extends Cubit<CheckInternetState> {
+  final Dio dio = Dio();
+
   CheckInternetCubit() : super(CheckInternetInitial());
+
   Future<void> checkinternet() async {
     emit(CheckInternetLoading());
-    final List<ConnectivityResult> connectivityResult =
-        await (Connectivity().checkConnectivity());
+    Future.delayed(
+      const Duration(seconds: 1),
+      () async {
+        // Check if the device is connected to any network
+        final List<ConnectivityResult> connectivityResult =
+            await Connectivity().checkConnectivity();
 
-// This condition is for demo purposes only to explain every connection type.
-// Use conditions which work for your requirements.
-    if (connectivityResult.contains(ConnectivityResult.mobile) ||
-        connectivityResult.contains(ConnectivityResult.wifi)
-       // ||connectivityResult.contains(ConnectivityResult.ethernet)
-        ) {
-      emit(CheckInternetSuccess());
-    }else{
-      emit(CheckInternetFailed());
-    }
+        if (connectivityResult.contains(ConnectivityResult.mobile) ||
+            connectivityResult.contains(ConnectivityResult.ethernet) ||
+            connectivityResult.contains(ConnectivityResult.wifi)) {
+          //print(connectivityResult.toString());
+          try {
+            // Perform an actual HTTP request to verify internet access
+            final response = await dio.get(
+              'https://www.google.com',
+              options: Options(
+                receiveTimeout: const Duration(seconds: 5), // 5 seconds timeout
+                sendTimeout: const Duration(seconds: 5),
+              ),
+            );
+            if (response.statusCode == 200) {
+              emit(CheckInternetSuccess());
+            } else {
+              emit(CheckInternetFailed());
+            }
+          } catch (e) {
+            // Dio throws an error if the request fails
+            emit(CheckInternetFailed());
+          }
+        } else {
+          // No network connectivity
+          // print(connectivityResult.toString());
+          emit(CheckInternetFailed());
+        }
+      },
+    );
   }
 }

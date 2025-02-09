@@ -4,6 +4,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
+import 'package:vcare/features/home/screens/detailed_doctor_screen.dart';
 
 class DoctorWidget extends StatelessWidget {
   const DoctorWidget({super.key, required this.doctor});
@@ -18,23 +19,34 @@ class DoctorWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h, left: 15.h, right: 15.h),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          //opens doctor details screen
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+            return DetailedDoctorScreen(
+              doctor: doctor,
+              female: female,
+            );
+          }));
+        },
         borderRadius: BorderRadius.circular(14.sp),
         child: Container(
           height: 100.h,
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           decoration: BoxDecoration(
-              color: AppColors.white,////////////////
+              color: AppColors.white, ////////////////
               borderRadius: BorderRadius.circular(14.sp)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                !female
-                    ? 'assets/images/male_doctor.png'
-                    : 'assets/images/female_doctor.png',
-                width: 80.w,
+              Hero(
+                tag: doctor.photo,
+                child: Image.asset(
+                  !female
+                      ? 'assets/images/male_doctor.png'
+                      : 'assets/images/female_doctor.png',
+                  width: 80.w,
+                ),
               ),
               SizedBox(
                 width: 15.w,
@@ -44,17 +56,23 @@ class DoctorWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Dr. ${doctor.name}',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyles.font16dark,
+                    Hero(
+                      tag: doctor.name,
+                      child: Text(
+                        'Dr. ${doctor.name}',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyles.font16dark,
+                      ),
                     ),
-                    Text(
-                      '${doctor.degree} - ${doctor.specialization!.name}',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyles.font13dark,
+                    Hero(
+                      tag: doctor,
+                      child: Text(
+                        '${doctor.degree} - ${doctor.specialization!.name}',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyles.font13dark,
+                      ),
                     ),
                     SizedBox(
                       height: 4.h,

@@ -1,13 +1,10 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/app_sizes.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:vcare/core/widgets/app_dialog.dart';
-import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/login/cubit/login_cubit.dart';
 import 'package:vcare/features/login/widgets/email_and_password.dart';
 import 'package:vcare/features/login/widgets/logo_and_title.dart';

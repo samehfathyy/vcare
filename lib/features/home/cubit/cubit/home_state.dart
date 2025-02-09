@@ -9,7 +9,8 @@ final class HomeLoading extends HomeState {}
 
 final class HomeSuccess extends HomeState {
   final List<Specializationdata?> specializationslist;
-  HomeSuccess(this.specializationslist,);
+    final List<Doctor?> doctorlist;
+  HomeSuccess(this.specializationslist, this.doctorlist,);
 }
 
 final class HomeFailed extends HomeState {

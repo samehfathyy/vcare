@@ -5,7 +5,13 @@ class ApiPaths {
   static const String signup = "auth/register";
   static const String userprofile = "user/profile";
   static const String appointment = "appointment/index";
+  static const String storeappointment = "appointment/store";
 }
+
+
+
+
+
 
 class ApiErrors {
   static const String badRequestError = "badRequestError";

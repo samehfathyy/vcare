@@ -7,9 +7,9 @@ import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/theming/theming%20helper/sliverpinnedwidgetdelegate.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
-import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/login/screens/login_screen.dart';
 import 'package:vcare/features/user_profile/data/cubit/cubit/userprofile_cubit.dart';
+import 'package:vcare/vcare_app.dart';
 
 class StartApp extends StatefulWidget {
   const StartApp({super.key, required this.loggedIn});
@@ -20,16 +20,19 @@ class StartApp extends StatefulWidget {
 }
 
 class _StartAppState extends State<StartApp> {
+  bool dialogisopened = false;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => getIt<CheckInternetCubit>()..checkinternet(),
+          create: (context) {
+            return getIt<UserprofileCubit>()..getuserprofile();
+          },
         ),
         BlocProvider(
           create: (context) {
-            return getIt<UserprofileCubit>()..getuserprofile();
+            return getIt<HomeCubit>();
           },
         ),
       ],
@@ -37,19 +40,41 @@ class _StartAppState extends State<StartApp> {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           // widget.loggedIn ? const Home() : const LoginScreen()
-          home: BlocBuilder<CheckInternetCubit, CheckInternetState>(
-            builder: (context, state) {
-              if (state is CheckInternetLoading) {
-                return const CircularProgressIndicator();
-              } else if (state is CheckInternetSuccess && widget.loggedIn) {
-                return const Home();
-              } else if (state is CheckInternetSuccess && !widget.loggedIn) {
-                return const LoginScreen();
-              } else {
-                return const retryscreen();
-              }
-            },
+
+          // home: BlocBuilder<CheckInternetCubit, CheckInternetState>(
+          //   builder: (context, state) {
+          //     if (state is CheckInternetSuccess && widget.loggedIn) {
+          //       return const VcareApp();
+          //     } else if (state is CheckInternetSuccess && !widget.loggedIn) {
+          //       return const LoginScreen();
+          //     } else {
+          //       return const retryscreen();
+          //     }
+          //   },
+          // ),
+
+          home: MultiBlocListener(
+            listeners: [
+             
+              BlocListener<UserprofileCubit, UserprofileState>(
+                listenWhen: (previous, current) => current is UserprofileFailed,
+                listener: (context, state) async {
+                  if (state is UserprofileFailed && context.mounted) {
+                    // await SharedPrefHelper.clearAllSecuredData();
+                    // await SharedPrefHelper.setData(
+                    //     SharedPrefHelper.loggedIn, false);
+                    
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ));
+                     
+                  }
+                },
+              ),
+            ],
+            child: widget.loggedIn ? const VcareApp() : const LoginScreen(),
           ),
+          // home: widget.loggedIn?VcareApp():LoginScreen(),
         ),
       ),
     );
@@ -103,9 +128,11 @@ class retryscreen extends StatelessWidget {
                     );
                     Future.delayed(
                       const Duration(milliseconds: 1200),
-                      () {
+                      () async {
                         Navigator.of(context).pop();
-                        context.read<CheckInternetCubit>().checkinternet();
+                        await context
+                            .read<CheckInternetCubit>()
+                            .checkinternet();
                       },
                     );
                   },
