@@ -27,7 +27,7 @@ class _RememberMeState extends State<RememberMe> {
           child: Checkbox(
             value: context.read<LoginCubit>().rememberme,
             checkColor: AppColors.white,
-            activeColor: AppColors.mainpurple,
+            activeColor: AppColors.mainblue,
             onChanged: (value) {
               context.read<LoginCubit>().rememberme = value ?? true;
               setState(() {});

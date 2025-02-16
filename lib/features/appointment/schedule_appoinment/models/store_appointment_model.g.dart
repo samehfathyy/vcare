@@ -9,15 +9,15 @@ part of 'store_appointment_model.dart';
 StoreAppointmentModel _$StoreAppointmentModelFromJson(
         Map<String, dynamic> json) =>
     StoreAppointmentModel(
-      doctorId: json['doctorId'] as String,
-      startDate: json['startDate'] as String,
+      doctor_id: json['doctor_id'] as String,
+      start_time: json['start_time'] as String,
       notes: json['notes'] as String,
     );
 
 Map<String, dynamic> _$StoreAppointmentModelToJson(
         StoreAppointmentModel instance) =>
     <String, dynamic>{
-      'doctorId': instance.doctorId,
-      'startDate': instance.startDate,
+      'doctor_id': instance.doctor_id,
+      'start_time': instance.start_time,
       'notes': instance.notes,
     };

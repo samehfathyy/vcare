@@ -80,7 +80,7 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                           const Icon(
                             Icons.access_time_filled,
                             size: 20,
-                            color: AppColors.mainpurple,
+                            color: AppColors.mainblue,
                           ),
                           SizedBox(
                             width: 5.w,
@@ -88,7 +88,7 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                           Text(
                             '${parsedDate.hour}:${parsedDate.minute}${parsedDate.minute < 9 ? '0' : ''}',
                             style: TextStyles.font14dark
-                                .copyWith(color: AppColors.mainpurple),
+                                .copyWith(color: AppColors.mainblue),
                           ),
                           SizedBox(
                             width: 15.w,
@@ -96,7 +96,7 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                           const Icon(
                             Icons.date_range,
                             size: 20,
-                            color: AppColors.mainpurple,
+                            color: AppColors.mainblue,
                           ),
                           SizedBox(
                             width: 5.w,
@@ -104,7 +104,7 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                           Text(
                             '$dayName, $monthName ${parsedDate.day}',
                             style: TextStyles.font14dark
-                                .copyWith(color: AppColors.mainpurple),
+                                .copyWith(color: AppColors.mainblue),
                           ),
                         ],
                       ),

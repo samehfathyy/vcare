@@ -6,17 +6,39 @@ import 'package:vcare/features/appointment/schedule_appoinment/repo/store_appoin
 part 'storeappointment_state.dart';
 
 class StoreappointmentCubit extends Cubit<StoreappointmentState> {
-  StoreappointmentCubit(this.storeAppointmentRepo) : super(StoreappointmentInitial());
+  StoreappointmentCubit(this.storeAppointmentRepo)
+      : super(StoreappointmentInitial());
   final StoreAppointmentRepo storeAppointmentRepo;
-  void storeappointment(StoreAppointmentModel storeappointmentmodel)async{
-      emit(Storeappointmentloading());
-      
-    final result = await storeAppointmentRepo.storeAppointmentRepo(storeappointmentmodel);
-    result.when(success: (data) {
-      emit(Storeappointmentsuccess());
-    }, failure: (errorHandler) {
+  late int doctorId;
+  DateTime date = DateTime.now();
+  int time = -1;
+  String notes = '';
+  Future storeappointment() async {
+    StoreAppointmentModel storeappointmentmodel =
+        StoreAppointmentModel(doctor_id: '', start_time: '', notes: '');
+    emit(Storeappointmentloading());
+    if (doctorId != null && date != null) {
+      final date = DateTime.now();
+      storeappointmentmodel.doctor_id = doctorId.toString();
+      storeappointmentmodel.notes = notes;
+      storeappointmentmodel.start_time =
+          '${date.year}-${date.month}-${date.day.toString()} $time:00';
+      print(storeappointmentmodel.doctor_id);
+      print(storeappointmentmodel.start_time);
+      print(storeappointmentmodel.notes);
+      final result = await storeAppointmentRepo
+          .storeAppointmentRepo(storeappointmentmodel);
+      result.when(
+        success: (data) {
+          print('success api');
+          emit(Storeappointmentsuccess());
+        },
+        failure: (errorHandler) {
+          emit(Storeappointmentfailed());
+        },
+      );
+    } else {
       emit(Storeappointmentfailed());
-    },);
-    
+    }
   }
 }

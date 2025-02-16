@@ -8,9 +8,9 @@ class SpecializationsMap {
     'pediatrics': 'assets/images/specsicons/pediatrics.png',
     'urology': 'assets/images/specsicons/urology.png',
     'psychiatry': 'assets/images/specsicons/psychiatry.png',
-    'neurology': 'assets/images/specsicons/Neurology .png',
-    'ophthalmology': 'assets/images/specsicons/eye.png',
-    'gynecology': 'assets/images/specsicons/maternity.png',
+    'neurology': 'assets/images/specsicons/neurology .png',
+    'ophthalmology': 'assets/images/specsicons/ophthalmology.png',
+    'gynecology': 'assets/images/specsicons/gynecology.png',
     'general': 'assets/images/specsicons/general.png',
   };
 }

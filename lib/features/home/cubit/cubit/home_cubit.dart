@@ -17,7 +17,6 @@ class HomeCubit extends Cubit<HomeState> {
     print('loading state');
     emit(HomeLoading());
     final result = await _homeRepo.gethomedata();
-    print('result done');
     await DioFactory.setTokenIntoHeaderAfterLogin();
     result.when(
       success: (data) {

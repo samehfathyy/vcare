@@ -1,8 +1,10 @@
 import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/features/appointment/get%20appointments/appointment_screen.dart';
+import 'package:vcare/features/appointment/schedule_appoinment/cubit/storeappointment_cubit.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/screens/home.dart';
 import 'package:vcare/features/profile/profile_screen.dart';
@@ -66,7 +68,7 @@ class _VcareAppState extends State<VcareApp> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.white,
         showSelectedLabels: false,
-        selectedItemColor: AppColors.mainpurple,
+        selectedItemColor: AppColors.mainblue,
         unselectedItemColor: AppColors.darkgray2,
         currentIndex: _selectedIndex,
         onTap: (int index) {

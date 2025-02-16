@@ -139,8 +139,8 @@ Widget registerbutton(BuildContext context) {
               ));
         },
         child: Text('resgister now',
-            style: TextStyles.font13darkgray
-                .copyWith(color: AppColors.mainpurple)),
+            style:
+                TextStyles.font13darkgray.copyWith(color: AppColors.mainblue)),
       ),
     ],
   );
@@ -162,7 +162,7 @@ class TermsAndConditionsText extends StatelessWidget {
           TextSpan(
             text: ' Terms & Conditions',
             style:
-                TextStyles.font13darkgray.copyWith(color: AppColors.mainpurple),
+                TextStyles.font13darkgray.copyWith(color: AppColors.mainblue),
           ),
           TextSpan(
             text: ' and',
@@ -171,7 +171,7 @@ class TermsAndConditionsText extends StatelessWidget {
           TextSpan(
             text: ' Privacy Policy',
             style:
-                TextStyles.font13darkgray.copyWith(color: AppColors.mainpurple),
+                TextStyles.font13darkgray.copyWith(color: AppColors.mainblue),
           ),
         ],
       ),

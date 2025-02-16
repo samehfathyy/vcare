@@ -62,7 +62,7 @@ Future<void> appDialog(
                         style: TextStyles.font16dark,
                       )
                     : const CircularProgressIndicator(
-                        color: AppColors.mainpurple,
+                        color: AppColors.mainblue,
                       ),
               ],
             ),

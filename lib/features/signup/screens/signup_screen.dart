@@ -78,7 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                   BlocListener<SignupCubit, SignupState>(
-                    listener: (context, state) async{
+                    listener: (context, state) async {
                       if (state is Signuploading) {
                         await appDialog(
                           context: context,
@@ -194,7 +194,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                       }
                                     },
                                     style: TextButton.styleFrom(
-                                      backgroundColor: AppColors.mainpurple,
+                                      backgroundColor: AppColors.mainblue,
                                       //padding: EdgeInsets.symmetric(vertical: 12.h),
                                     ),
                                     child: Text(

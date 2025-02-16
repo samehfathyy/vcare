@@ -36,37 +36,28 @@ class _SpecCircleAndTextState extends State<SpecCircleAndText> {
             widget.circleiconpressed();
             setState(() {});
           },
+          borderRadius: BorderRadius.circular(20.r),
           child: Container(
-            height: 70.h,
-            width: 70.h,
-            padding: EdgeInsets.all(2.w),
+            //width: 60.w,
+            //height: 60.w,
+            padding: EdgeInsets.all(12.w),
+            alignment: Alignment.center,
             decoration: BoxDecoration(
-                border: Border.all(
-                  width: 2.w,
-                  color: widget.selected == widget.index
-                      ? AppColors.mainpurple
-                      : Colors.transparent,
-                ),
-                shape: BoxShape.circle),
-            child: Container(
-              //width: 60.w,
-              //height: 60.w,
-              padding: EdgeInsets.all(12.w),
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                  // border: Border.all(
-                  //   width: 2,
-                  //   color: widget.selected == widget.index
-                  //       ? AppColors.mainpurple
-                  //       : Colors.transparent,
-                  // ),
-                  color: AppColors.white,
-                  shape: BoxShape.circle),
-              child: Image.asset(
-                SpecializationsMap.specializationsiconsmap[widget.mapkey]
-                    .toString(),
-                fit: BoxFit.cover,
-              ),
+              borderRadius: BorderRadius.circular(20.r),
+              // border: Border.all(
+              //   width: 2,
+              //   color: widget.selected == widget.index
+              //       ? AppColors.mainpurple
+              //       : Colors.transparent,
+              // ),
+              color: AppColors.white,
+              //shape: BoxShape.circle
+            ),
+            child: Image.asset(
+              // SpecializationsMap.specializationsiconsmap[widget.mapkey]
+              //     .toString(),
+              'assets/images/specsicons/${widget.name.toLowerCase()}.png',
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -80,6 +71,7 @@ class _SpecCircleAndTextState extends State<SpecCircleAndText> {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             widget.name,
+            textAlign: TextAlign.center,
             style: TextStyles.font13dark,
           ),
         ),

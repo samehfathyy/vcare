@@ -75,7 +75,7 @@ class _SigninButtonState extends State<SigninButton> {
                 }
               },
               style: TextButton.styleFrom(
-                backgroundColor: AppColors.mainpurple,
+                backgroundColor: AppColors.mainblue,
                 //padding: EdgeInsets.symmetric(vertical: 12.h),
               ),
               child: Text(

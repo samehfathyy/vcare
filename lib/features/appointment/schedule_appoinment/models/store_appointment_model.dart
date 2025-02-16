@@ -5,13 +5,13 @@ part 'store_appointment_model.g.dart';
 @JsonSerializable()
 class StoreAppointmentModel {
   //doctor_id
-  final String doctorId;
+  String doctor_id;
   //start_time
-  final String startDate;
+  String start_time;
   //notes
-  final String notes;
+  String notes;
 
   StoreAppointmentModel(
-      {required this.doctorId, required this.startDate, required this.notes});
+      {required this.doctor_id, required this.start_time, required this.notes});
   Map<String, dynamic> toJson() => _$StoreAppointmentModelToJson(this);
 }

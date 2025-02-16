@@ -74,7 +74,7 @@ Future<void> showcheckdialog(BuildContext context) async {
                   await context.read<CheckInternetCubit>().checkinternet();
                 },
                 style: TextButton.styleFrom(
-                    backgroundColor: AppColors.mainpurple,
+                    backgroundColor: AppColors.mainblue,
                     padding:
                         EdgeInsets.symmetric(horizontal: 40.w, vertical: 10.h)),
                 child: Text(

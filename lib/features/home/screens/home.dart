@@ -2,9 +2,11 @@ import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
 import 'package:vcare/core/theming/theming%20helper/sliverpinnedwidgetdelegate.dart';
+import 'package:vcare/features/appointment/schedule_appoinment/cubit/storeappointment_cubit.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
 import 'package:vcare/features/home/widgets/doctor_widget.dart';
@@ -135,12 +137,6 @@ class _HomeState extends State<Home> {
                                     style: TextStyles.font21dark,
                                   );
                                 }
-                                if (state is UserprofileFailed) {
-                                  return Text(
-                                    'Hello',
-                                    style: TextStyles.font21dark,
-                                  );
-                                }
 
                                 return Text(
                                   'Hello',
@@ -181,7 +177,7 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
-
+            //space
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 5.h,
@@ -189,16 +185,50 @@ class _HomeState extends State<Home> {
             ),
 
             //specializations list
-            SliverPersistentHeader(
-              pinned: true,
+            SliverToBoxAdapter(
+              //pinned: true,
               //floating: true,
-              delegate: sliverpinnedwidgetdelegate(
+
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                ),
+                child: SizedBox(
+                  height: 450,
                   child: BlocBuilder<HomeCubit, HomeState>(
-                    buildWhen: (previous, current) => (current is HomeSuccess ||
-                        current is HomeFailed ||
-                        current is HomeLoading),
                     builder: (context, state) {
-                      print('updated dddddddddddddnnnnnnnnn');
+                      if (state is HomeSuccess) {
+                        return GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 1 / 1.4,
+                                  crossAxisCount: 4,
+                                  mainAxisSpacing: 8.h,
+                                  crossAxisSpacing: 10.w),
+                          itemCount: state.specializationslist.length,
+                          itemBuilder: (context, index) {
+                            print(state.specializationslist[index]?.name ?? '');
+                            return SpecCircleAndText(
+                              index: index,
+                              name:
+                                  state.specializationslist[index]?.name ?? '',
+                              mapkey: state.specializationslist[index]?.name
+                                      .toLowerCase() ??
+                                  '',
+                              circleiconpressed: () {
+                                selectedspecindex = index;
+
+                                context
+                                    .read<HomeCubit>()
+                                    .filterdoctors(selectedspecindex);
+                                //context.read<HomeCubit>().refreshspecslist();
+                              },
+                              selected: selectedspecindex,
+                            );
+                          },
+                        );
+                      }
                       if (state is HomeSuccess) {
                         return Container(
                           color: AppColors.lightgray,
@@ -277,7 +307,8 @@ class _HomeState extends State<Home> {
                       return const SizedBox();
                     },
                   ),
-                  height: 110.h),
+                ),
+              ),
             ),
 
             SliverToBoxAdapter(
@@ -312,9 +343,17 @@ class _HomeState extends State<Home> {
                     },
                   );
                 } else if (state is HomeFailed) {
-                  return const SliverToBoxAdapter(child: Icon(Icons.error_rounded,color: Colors.red,));
+                  return const SliverToBoxAdapter(
+                      child: Icon(
+                    Icons.error_rounded,
+                    color: Colors.red,
+                  ));
                 }
-                return const SliverToBoxAdapter(child: Icon(Icons.error_rounded,color: Colors.red,));
+                return const SliverToBoxAdapter(
+                    child: Icon(
+                  Icons.error_rounded,
+                  color: Colors.red,
+                ));
               },
             ),
             //to fill any remaining space when scrolling

@@ -55,7 +55,6 @@ class _StartAppState extends State<StartApp> {
 
           home: MultiBlocListener(
             listeners: [
-             
               BlocListener<UserprofileCubit, UserprofileState>(
                 listenWhen: (previous, current) => current is UserprofileFailed,
                 listener: (context, state) async {
@@ -63,11 +62,10 @@ class _StartAppState extends State<StartApp> {
                     // await SharedPrefHelper.clearAllSecuredData();
                     // await SharedPrefHelper.setData(
                     //     SharedPrefHelper.loggedIn, false);
-                    
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ));
-                     
+
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ));
                   }
                 },
               ),
@@ -121,7 +119,7 @@ class retryscreen extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                           child: Center(
                               child: CircularProgressIndicator(
-                            color: AppColors.mainpurple,
+                            color: AppColors.mainblue,
                           )),
                         );
                       },
@@ -137,7 +135,7 @@ class retryscreen extends StatelessWidget {
                     );
                   },
                   style: TextButton.styleFrom(
-                      backgroundColor: AppColors.mainpurple,
+                      backgroundColor: AppColors.mainblue,
                       padding: EdgeInsets.symmetric(
                           horizontal: 40.w, vertical: 10.h)),
                   child: Text(
@@ -179,7 +177,7 @@ class _testState extends State<test> {
             title: Container(
               height: 50,
               width: double.infinity,
-              color: AppColors.mainpurple,
+              color: AppColors.mainblue,
             ),
           ),
           SliverPersistentHeader(
@@ -198,7 +196,7 @@ class _testState extends State<test> {
                 child: Container(
                   height: 50,
                   width: double.infinity,
-                  color: AppColors.mainpurple,
+                  color: AppColors.mainblue,
                 ),
                 height: 50),
           ),

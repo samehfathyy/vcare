@@ -38,7 +38,7 @@ class DoctorInfoWidget extends StatelessWidget {
                 Icon(
                   icon,
                   size: 27.sp,
-                  color: AppColors.mainpurple,
+                  color: AppColors.mainblue,
                 ),
               ],
             ),
