@@ -10,6 +10,7 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   late List<Specializationdata?>? allspecializations;
   int selectedspec = 0;
+  List<Doctor> suggestedDoctors = [];
   HomeCubit(this._homeRepo) : super(HomeInitial());
 
   Future<void> getdata() async {
@@ -23,6 +24,14 @@ class HomeCubit extends Cubit<HomeState> {
         final specializationslist = data.specializationdata;
         final doctors = specializationslist?[selectedspec].doctors ?? [];
         allspecializations = specializationslist;
+        for (int i = 0; i < (specializationslist?.length ?? 0); i++) {
+          print('for');
+          if (specializationslist![i].doctors != null) {
+            if (specializationslist![i].doctors!.first != null) {
+              suggestedDoctors.add(specializationslist![i].doctors!.first!);
+            }
+          }
+        }
         emit(HomeSuccess(specializationslist ?? [], doctors));
       },
       failure: (errorHandler) {

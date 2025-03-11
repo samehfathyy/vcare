@@ -25,7 +25,7 @@ class _VcareAppState extends State<VcareApp> {
   final List<Widget> _screens = [
     const Home(),
     const AppointmentScreen(),
-    const ProfileScreen(),
+    Scaffold(),
     const ProfileScreen(),
   ];
 

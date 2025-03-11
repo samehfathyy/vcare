@@ -151,7 +151,7 @@ class _AvalaibleTimeState extends State<AvalaibleTime> {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 50.h,
+                  height: 60.h,
                   child: PageView.builder(
                     itemCount: 7,
                     controller: dateslidercontroller,

@@ -8,15 +8,21 @@ part 'appointment_state.dart';
 class AppointmentCubit extends Cubit<AppointmentState> {
   AppointmentCubit(this._appointmentRepo) : super(AppointmentInitial());
   final AppointmentRepo _appointmentRepo;
-  List<Appointment> allappointments=[];
-  Future<void> getallappointments()async{
+  List<Appointment> allappointments = [];
+  Future<void> getallappointments() async {
     emit(AppointmentLoading());
     final resposne = await _appointmentRepo.getappointments();
-    resposne.when(success: (data) {
-      allappointments=data.data;
-      emit(AppointmentSuccess(appoinments: allappointments));
-    }, failure: (errorHandler) {
-      emit(AppointmentFailed(message: errorHandler.apiErrorModel.message??'Unknown error occred'));
-    },);
+    resposne.when(
+      success: (data) {
+        allappointments = data.data;
+        allappointments = allappointments.reversed.toList();
+        emit(AppointmentSuccess(appoinments: allappointments));
+      },
+      failure: (errorHandler) {
+        emit(AppointmentFailed(
+            message:
+                errorHandler.apiErrorModel.message ?? 'Unknown error occred'));
+      },
+    );
   }
 }

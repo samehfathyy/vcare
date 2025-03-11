@@ -2,6 +2,7 @@ import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vcare/core/dependency_injection.dart';
+import 'package:vcare/core/helper/shared_pref_helper.dart';
 import 'package:vcare/core/networking/check%20internet/cubit/check_internet_cubit.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
@@ -59,9 +60,9 @@ class _StartAppState extends State<StartApp> {
                 listenWhen: (previous, current) => current is UserprofileFailed,
                 listener: (context, state) async {
                   if (state is UserprofileFailed && context.mounted) {
-                    // await SharedPrefHelper.clearAllSecuredData();
-                    // await SharedPrefHelper.setData(
-                    //     SharedPrefHelper.loggedIn, false);
+                    await SharedPrefHelper.clearAllSecuredData();
+                    await SharedPrefHelper.setData(
+                        SharedPrefHelper.loggedIn, false);
 
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const LoginScreen(),

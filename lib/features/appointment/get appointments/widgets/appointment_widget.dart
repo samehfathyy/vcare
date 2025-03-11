@@ -27,11 +27,11 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h, left: 15.h, right: 15.h),
       child: Container(
-          height: 180.h,
+          height: 160.h,
           padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
           decoration: BoxDecoration(
               color: AppColors.white, ////////////////
-              borderRadius: BorderRadius.circular(14.sp)),
+              borderRadius: BorderRadius.circular(14.r)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,27 +72,15 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                           color: AppColors.lightgray,
                           borderRadius: BorderRadius.circular(8.sp)),
                       padding: EdgeInsets.symmetric(
-                        vertical: 10.h,
-                      ),
+                          vertical: 10.h, horizontal: 10.w),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(
-                            Icons.access_time_filled,
-                            size: 20,
-                            color: AppColors.mainblue,
-                          ),
-                          SizedBox(
-                            width: 5.w,
-                          ),
-                          Text(
-                            '${parsedDate.hour}:${parsedDate.minute}${parsedDate.minute < 9 ? '0' : ''}',
-                            style: TextStyles.font14dark
-                                .copyWith(color: AppColors.mainblue),
-                          ),
-                          SizedBox(
-                            width: 15.w,
-                          ),
+                          // const Icon(
+                          //   Icons.access_time_filled,
+                          //   size: 20,
+                          //   color: AppColors.mainblue,
+                          // ),
                           const Icon(
                             Icons.date_range,
                             size: 20,
@@ -102,10 +90,23 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
                             width: 5.w,
                           ),
                           Text(
-                            '$dayName, $monthName ${parsedDate.day}',
-                            style: TextStyles.font14dark
-                                .copyWith(color: AppColors.mainblue),
+                            '${widget.appointment.appointmentTime}',
+                            style: TextStyles.font13dark.copyWith(
+                                color: AppColors.mainblue,
+                                fontWeight: FontWeight.w600),
+                            overflow: TextOverflow.ellipsis,
                           ),
+                          // Text(
+                          //   '${parsedDate.hour}:${parsedDate.minute}${parsedDate.minute < 9 ? '0' : ''}',
+                          //   style: TextStyles.font14dark
+                          //       .copyWith(color: AppColors.mainblue),
+                          // ),
+
+                          // Text(
+                          //   '$dayName, $monthName ${parsedDate.day}',
+                          //   style: TextStyles.font14dark
+                          //       .copyWith(color: AppColors.mainblue),
+                          // ),
                         ],
                       ),
                     ),

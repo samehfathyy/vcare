@@ -1,9 +1,12 @@
+import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
+import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/repo/specializations_map.dart';
+import 'package:vcare/features/home/screens/doctors_list_screen.dart';
 
 class SpecCircleAndText extends StatefulWidget {
   const SpecCircleAndText({
@@ -33,8 +36,19 @@ class _SpecCircleAndTextState extends State<SpecCircleAndText> {
       children: [
         InkWell(
           onTap: () {
-            widget.circleiconpressed();
-            setState(() {});
+            print('object');
+            Navigator.push(context, MaterialPageRoute(
+              builder: (context) {
+                return DoctorsListScreen(
+                    spec: context
+                            .read<HomeCubit>()
+                            .allspecializations![widget.index]!
+                            );
+              },
+            ));
+
+            print('pressed');
+            //setState(() {});
           },
           borderRadius: BorderRadius.circular(20.r),
           child: Container(
@@ -82,7 +96,6 @@ class _SpecCircleAndTextState extends State<SpecCircleAndText> {
 
 class speccircleshimmer extends StatefulWidget {
   const speccircleshimmer({super.key});
-
   @override
   State<speccircleshimmer> createState() => _speccircleshimmerState();
 }

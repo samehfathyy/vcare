@@ -2,6 +2,7 @@ import 'package:cubit_form/cubit_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:vcare/core/dependency_injection.dart';
 import 'package:vcare/core/theming/colors.dart';
 import 'package:vcare/core/theming/textstyles.dart';
@@ -9,6 +10,7 @@ import 'package:vcare/core/theming/theming%20helper/sliverpinnedwidgetdelegate.d
 import 'package:vcare/features/appointment/schedule_appoinment/cubit/storeappointment_cubit.dart';
 import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
+import 'package:vcare/features/home/screens/doctors_list_screen.dart';
 import 'package:vcare/features/home/widgets/doctor_widget.dart';
 import 'package:vcare/features/home/widgets/spec_circle_and_text.dart';
 import 'package:vcare/features/home/widgets/stack_widget.dart';
@@ -180,7 +182,7 @@ class _HomeState extends State<Home> {
             //space
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 5.h,
+                height: 10.h,
               ),
             ),
 
@@ -194,7 +196,7 @@ class _HomeState extends State<Home> {
                   horizontal: 20.w,
                 ),
                 child: SizedBox(
-                  height: 450,
+                  height: 320.w,
                   child: BlocBuilder<HomeCubit, HomeState>(
                     builder: (context, state) {
                       if (state is HomeSuccess) {
@@ -229,82 +231,95 @@ class _HomeState extends State<Home> {
                           },
                         );
                       }
-                      if (state is HomeSuccess) {
-                        return Container(
-                          color: AppColors.lightgray,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                height: 110.h,
-                                //color: AppColors.gray,
-                                child: ListView.builder(
-                                  controller: _specializationsScrollController,
-                                  itemCount: state.specializationslist.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: EdgeInsets.only(left: 8.w),
-                                      child: SpecCircleAndText(
-                                        index: index,
-                                        name: state.specializationslist[index]
-                                                ?.name ??
-                                            '',
-                                        mapkey: state.specializationslist[index]
-                                                ?.name
-                                                .toLowerCase() ??
-                                            '',
-                                        circleiconpressed: () {
-                                          selectedspecindex = index;
+                      // if (state is HomeSuccess) {
+                      //   return Container(
+                      //     color: AppColors.lightgray,
+                      //     child: Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         SizedBox(
+                      //           height: 110.h,
+                      //           //color: AppColors.gray,
+                      //           child: ListView.builder(
+                      //             controller: _specializationsScrollController,
+                      //             itemCount: state.specializationslist.length,
+                      //             scrollDirection: Axis.horizontal,
+                      //             itemBuilder: (context, index) {
+                      //               return Padding(
+                      //                 padding: EdgeInsets.only(left: 8.w),
+                      //                 child: SpecCircleAndText(
+                      //                   index: index,
+                      //                   name: state.specializationslist[index]
+                      //                           ?.name ??
+                      //                       '',
+                      //                   mapkey: state
+                      //                           .specializationslist[index]
+                      //                           ?.name
+                      //                           .toLowerCase() ??
+                      //                       '',
+                      //                   circleiconpressed: () {
+                      //                     selectedspecindex = index;
 
-                                          context
-                                              .read<HomeCubit>()
-                                              .filterdoctors(selectedspecindex);
-                                          context
-                                              .read<HomeCubit>()
-                                              .refreshspecslist();
+                      //                     // context
+                      //                     //     .read<HomeCubit>()
+                      //                     //     .filterdoctors(selectedspecindex);
+                      //                     // context
+                      //                     //     .read<HomeCubit>()
+                      //                     //     .refreshspecslist();
 
-                                          doctorslistAutoScroll(190.h + 42.h);
-                                          specializationslistAutoScroll(
-                                              (index) * 88.w);
-                                        },
-                                        selected: selectedspecindex,
-                                      ),
-                                    );
-                                  },
+                      //                     // Navigator.push(context,
+                      //                     //     MaterialPageRoute(
+                      //                     //   builder: (context) {
+                      //                     //     return DoctorsListScreen(
+                      //                     //         doctors: state
+                      //                     //                 .specializationslist[
+                      //                     //                     index]
+                      //                     //                 ?.doctors ??
+                      //                     //             []);
+                      //                     //   },
+                      //                     // ));
+
+                      //                     // doctorslistAutoScroll(190.h + 42.h);
+                      //                     // specializationslistAutoScroll(
+                      //                     //     (index) * 88.w);
+                      //                   },
+                      //                   selected: selectedspecindex,
+                      //                 ),
+                      //               );
+                      //             },
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   );
+                      // }
+
+                      return GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 1,
+                                  crossAxisCount: 4,
+                                  mainAxisSpacing: 18.h,
+                                  crossAxisSpacing: 10.w),
+                          itemCount: 10,
+                          itemBuilder: (context, index) {
+                            return Shimmer.fromColors(
+                              baseColor: AppColors.gray,
+                              highlightColor: AppColors.lightgray,
+                              child: Container(
+                                // height: 70.h,
+                                // width: 70.h,
+                                padding: EdgeInsets.all(2.w),
+                                decoration: BoxDecoration(
+                                  color: AppColors.black,
+                                  borderRadius: BorderRadius.circular(20.r),
+                                  border: Border.all(
+                                      width: 2.w, color: AppColors.black),
                                 ),
                               ),
-                            ],
-                          ),
-                        );
-                      }
-                      if (state is HomeLoading) {
-                        return Container(
-                          color: AppColors.lightgray,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                  height: 110.h,
-                                  //color: AppColors.gray,
-                                  child: ListView.builder(
-                                      itemCount: 6,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        return Padding(
-                                          padding: EdgeInsets.only(left: 8.w),
-                                          child: const speccircleshimmer(),
-                                        );
-                                      })),
-                            ],
-                          ),
-                        );
-                      }
-                      if (state is HomeFailed) {
-                        return const Center(
-                          child: Text('it seems you have no internet'),
-                        );
-                      }
-                      return const SizedBox();
+                            );
+                          });
                     },
                   ),
                 ),
@@ -314,6 +329,30 @@ class _HomeState extends State<Home> {
             SliverToBoxAdapter(
               child: SizedBox(
                 height: 5.h,
+              ),
+            ),
+
+            //specializations title
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.w,
+                ),
+                child: Container(
+                  alignment: Alignment.bottomLeft,
+                  //color: AppColors.mainpurple,
+                  height: 42.h,
+                  child: Text(
+                    'Suggested Doctors',
+                    style: TextStyles.font21dark,
+                  ),
+                ),
+              ),
+            ),
+            //space
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 10.h,
               ),
             ),
 
@@ -330,11 +369,13 @@ class _HomeState extends State<Home> {
                     },
                   );
                 } else if (state is HomeSuccess) {
+                  final suggestedDocs =
+                      context.read<HomeCubit>().suggestedDoctors;
                   return SliverList.builder(
-                    itemCount: state.doctorlist.length,
+                    itemCount: suggestedDocs.length,
                     itemBuilder: (context, index) {
-                      if (state.doctorlist[index] != null) {
-                        Doctor doctor = state.doctorlist[index]!;
+                      if (suggestedDocs[index] != null) {
+                        Doctor doctor = suggestedDocs[index]!;
                         return DoctorWidget(doctor: doctor);
                       }
                       return const Center(

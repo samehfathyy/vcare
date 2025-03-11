@@ -34,14 +34,11 @@ class DetailedDoctorScreen extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    Hero(
-                      tag: doctor.photo,
-                      child: Image.asset(
-                        !female
-                            ? 'assets/images/male_doctor.png'
-                            : 'assets/images/female_doctor.png',
-                        width: 100.w,
-                      ),
+                    Image.asset(
+                      !female
+                          ? 'assets/images/male_doctor.png'
+                          : 'assets/images/female_doctor.png',
+                      width: 100.w,
                     ),
                     SizedBox(
                       height: 20.h,

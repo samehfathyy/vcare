@@ -34,14 +34,11 @@ class DoctorWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Hero(
-                    tag: 'doctor.photo',
-                    child: Image.asset(
-                      !female
-                          ? 'assets/images/male_doctor.png'
-                          : 'assets/images/female_doctor.png',
-                      width: 60.w,
-                    ),
+                  Image.asset(
+                    !female
+                        ? 'assets/images/male_doctor.png'
+                        : 'assets/images/female_doctor.png',
+                    width: 60.w,
                   ),
                   SizedBox(
                     width: 15.w,
@@ -51,23 +48,17 @@ class DoctorWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Hero(
-                          tag: doctor.name,
-                          child: Text(
-                            'Dr. ${doctor.name}',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyles.font16dark,
-                          ),
+                        Text(
+                          'Dr. ${doctor.name}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyles.font16dark,
                         ),
-                        Hero(
-                          tag: doctor,
-                          child: Text(
-                            '${doctor.degree} - ${doctor.specialization!.name}',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: TextStyles.font13dark,
-                          ),
+                        Text(
+                          '${doctor.degree} - ${doctor.specialization!.name}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: TextStyles.font13dark,
                         ),
                         SizedBox(
                           height: 4.h,
@@ -147,30 +138,38 @@ class DoctorWidget extends StatelessWidget {
                         height: Appsizes.buttonsheight,
                         child: TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                              PageRouteBuilder(
-                                transitionDuration: Duration(
-                                    milliseconds: 400), // Animation duration
-                                pageBuilder:
-                                    (context, animation, secondaryAnimation) {
-                                  return DetailedDoctorScreen(
-                                    doctor: doctor,
-                                    female: female,
-                                  );
-                                },
-                                transitionsBuilder: (context, animation,
-                                    secondaryAnimation, child) {
-                                  return SlideTransition(
-                                    position: Tween<Offset>(
-                                      begin: Offset(1, 0), // Start from bottom
-                                      end: Offset(
-                                          0, 0), // Move to normal position
-                                    ).animate(animation),
-                                    child: child,
-                                  );
-                                },
-                              ),
-                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return DetailedDoctorScreen(
+                                  doctor: doctor,
+                                  female: female,
+                                );
+                              },
+                            ));
+                            // Navigator.of(context).push(
+                            //   PageRouteBuilder(
+                            //     transitionDuration: Duration(
+                            //         milliseconds: 400), // Animation duration
+                            //     pageBuilder:
+                            //         (context, animation, secondaryAnimation) {
+                            //       return DetailedDoctorScreen(
+                            //         doctor: doctor,
+                            //         female: female,
+                            //       );
+                            //     },
+                            //     transitionsBuilder: (context, animation,
+                            //         secondaryAnimation, child) {
+                            //       return SlideTransition(
+                            //         position: Tween<Offset>(
+                            //           begin: Offset(1, 0), // Start from bottom
+                            //           end: Offset(
+                            //               0, 0), // Move to normal position
+                            //         ).animate(animation),
+                            // child: child,
+                            // );
+                            // },
+                            // ),
+                            // );
                           },
                           style: TextButton.styleFrom(
                               backgroundColor: AppColors.mainblue,
@@ -222,7 +221,7 @@ class _doctorwidgetshimmerState extends State<doctorwidgetshimmer> {
         baseColor: AppColors.gray,
         highlightColor: AppColors.lightgray,
         child: Container(
-          height: 100.h,
+          height: 140.h,
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           decoration: BoxDecoration(
             color: AppColors.white,
