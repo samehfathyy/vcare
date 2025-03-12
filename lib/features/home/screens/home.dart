@@ -12,6 +12,7 @@ import 'package:vcare/features/home/cubit/cubit/home_cubit.dart';
 import 'package:vcare/features/home/data/models/specialization_response_model.dart';
 import 'package:vcare/features/home/screens/doctors_list_screen.dart';
 import 'package:vcare/features/home/widgets/doctor_widget.dart';
+import 'package:vcare/features/home/widgets/pinnedtitle.dart';
 import 'package:vcare/features/home/widgets/spec_circle_and_text.dart';
 import 'package:vcare/features/home/widgets/stack_widget.dart';
 import 'package:vcare/features/user_profile/data/cubit/cubit/userprofile_cubit.dart';
@@ -115,6 +116,7 @@ class _HomeState extends State<Home> {
             //     },
             //   ),
             // ),
+
             SliverPersistentHeader(
               pinned: true,
               //floating: true,
@@ -157,33 +159,44 @@ class _HomeState extends State<Home> {
                   ),
                   height: 55.h),
             ),
+            //space
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 8.h,
+              ),
+            ),
+            // Pinnedtitle(
+            //   title: 'Top Diagnostic Tests',
+            // ),
 
             const SliverToBoxAdapter(
               child: StackWidget(),
             ),
 
-            //specializations title
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.w,
-                ),
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  //color: AppColors.mainpurple,
-                  height: 42.h,
-                  child: Text(
-                    'Medical Specializations',
-                    style: TextStyles.font21dark,
-                  ),
-                ),
-              ),
-            ),
-            //space
+            //Medical Specializations title
+            // SliverToBoxAdapter(
+            //   child: Padding(
+            //     padding: EdgeInsets.symmetric(
+            //       horizontal: 20.w,
+            //     ),
+            //     child: Container(
+            //       alignment: Alignment.bottomLeft,
+            //       //color: AppColors.mainpurple,
+            //       height: 42.h,
+            //       child: Text(
+            //         'Medical Specializations',
+            //         style: TextStyles.font21dark,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 10.h,
+                height: 5.h,
               ),
+            ),
+            Pinnedtitle(
+              title: 'Medical Specializations',
             ),
 
             //specializations list
@@ -201,7 +214,7 @@ class _HomeState extends State<Home> {
                     builder: (context, state) {
                       if (state is HomeSuccess) {
                         return GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   childAspectRatio: 1 / 1.4,
@@ -295,7 +308,7 @@ class _HomeState extends State<Home> {
                       // }
 
                       return GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   childAspectRatio: 1,
@@ -331,30 +344,18 @@ class _HomeState extends State<Home> {
                 height: 5.h,
               ),
             ),
-
-            //specializations title
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.w,
-                ),
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  //color: AppColors.mainpurple,
-                  height: 42.h,
-                  child: Text(
-                    'Suggested Doctors',
-                    style: TextStyles.font21dark,
-                  ),
-                ),
-              ),
+            // const SliverToBoxAdapter(
+            //   child: StackWidget(),
+            // ),
+            Pinnedtitle(
+              title: 'Suggested Doctors',
             ),
             //space
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: 10.h,
-              ),
-            ),
+            // SliverToBoxAdapter(
+            //   child: SizedBox(
+            //     height: 10.h,
+            //   ),
+            // ),
 
             //doctors list
             BlocBuilder<HomeCubit, HomeState>(

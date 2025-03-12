@@ -28,9 +28,13 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  #state management
   bloc: ^8.1.4
+  #networking
   build_runner: ^2.4.13
+  #networking
   connectivity_plus: ^6.1.0
+  
   cubit_form: ^2.0.5
   cupertino_icons: ^1.0.8
   cupertino_radio_choice: ^1.0.2
@@ -40,8 +44,8 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_getit: ^3.0.1
-  flutter_screenutil: ^5.9.3
-  flutter_secure_storage: ^9.2.2
+  flutter_screenutil: ^5.9.3 #responsive ui
+  flutter_secure_storage: ^9.2.2 #encr
   flutter_svg: ^1.0.0
   freezed: ^2.5.7
   get_it: ^7.7.0
@@ -54,6 +58,7 @@ dependencies:
   shared_preferences: ^2.3.3
   shimmer: ^3.0.0
   flutter_native_splash: ^2.4.4
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
   flutter_lints: ^4.0.0

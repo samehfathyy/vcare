@@ -25,7 +25,9 @@ class _VcareAppState extends State<VcareApp> {
   final List<Widget> _screens = [
     const Home(),
     const AppointmentScreen(),
-    Scaffold(),
+    Scaffold(
+      body: Center(child: Text('Com'),),
+    ),
     const ProfileScreen(),
   ];
 
@@ -66,8 +68,10 @@ class _VcareAppState extends State<VcareApp> {
         children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.white,
         showSelectedLabels: false,
+        showUnselectedLabels: false,
         selectedItemColor: AppColors.mainblue,
         unselectedItemColor: AppColors.darkgray2,
         currentIndex: _selectedIndex,
@@ -99,7 +103,7 @@ class _VcareAppState extends State<VcareApp> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.chat,
+              Icons.shopping_basket,
               size: 26.sp,
             ),
             label: 'Chats',

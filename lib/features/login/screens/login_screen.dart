@@ -19,10 +19,10 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<LoginCubit>(),
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: AppColors.white,
-          body: Padding(
+      child: Scaffold(
+        backgroundColor: AppColors.white,
+        body: SafeArea(
+          child: Padding(
             padding: EdgeInsets.only(
               bottom: Appsizes.horizontalpadding,
               left: Appsizes.horizontalpadding,

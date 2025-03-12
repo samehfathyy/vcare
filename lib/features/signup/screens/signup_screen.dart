@@ -11,6 +11,7 @@ import 'package:vcare/features/login/screens/login_screen.dart';
 import 'package:vcare/features/signup/cubit/cubit/signup_cubit.dart';
 import 'package:vcare/features/signup/widgets/account_form.dart';
 import 'package:vcare/features/signup/widgets/personal_details_form.dart';
+import 'package:vcare/vcare_app.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -93,7 +94,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const Home(),
+                              builder: (context) => const VcareApp(),
                             ),
                           );
                         });
@@ -191,6 +192,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                         await context
                                             .read<SignupCubit>()
                                             .signup();
+                                        //home
                                       }
                                     },
                                     style: TextButton.styleFrom(

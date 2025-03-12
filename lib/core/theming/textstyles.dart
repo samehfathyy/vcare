@@ -38,9 +38,15 @@ class TextStyles {
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600);
 
+  static TextStyle font21light = TextStyle(
+      fontSize: 21.sp,
+      color: AppColors.white,
+      fontFamily: 'Poppins',
+      fontWeight: FontWeight.w600);
+
   static TextStyle font22light = TextStyle(
       fontSize: 22.sp,
-      color: AppColors.black,
+      color: AppColors.white,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700);
 
@@ -61,3 +67,13 @@ class TextStyles {
     fontWeight: FontWeight.w600,
   );
 }
+
+double calculateTextHeight(
+      String text, TextStyle style, double maxWidth, int maxLines) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      maxLines: maxLines,
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: maxWidth);
+    return textPainter.size.height;
+  }
