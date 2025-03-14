@@ -26,7 +26,9 @@ class _VcareAppState extends State<VcareApp> {
     const Home(),
     const AppointmentScreen(),
     Scaffold(
-      body: Center(child: Text('Com'),),
+      body: Center(
+        child: Text('Comming soon'),
+      ),
     ),
     const ProfileScreen(),
   ];

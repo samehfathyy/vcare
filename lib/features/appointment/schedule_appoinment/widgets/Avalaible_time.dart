@@ -125,7 +125,7 @@ class _AvalaibleTimeState extends State<AvalaibleTime> {
           //   ),
           // ),
           SizedBox(
-            height: 12.h,
+            height: 6.h,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +151,8 @@ class _AvalaibleTimeState extends State<AvalaibleTime> {
               Expanded(
                 child: SizedBox(
                   width: double.infinity,
-                  height: 60.h,
+                  height: calculateTextHeight(
+                      't \n 1', TextStyles.font21dark, 50, 2),
                   child: PageView.builder(
                     itemCount: 7,
                     controller: dateslidercontroller,
@@ -207,7 +208,8 @@ class _AvalaibleTimeState extends State<AvalaibleTime> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+            padding: EdgeInsets.only(
+                top: 5.h, right: 10.w, left: 15.w, bottom: 10.h),
             child: Text(
               'Time Slots',
               style: TextStyles.font16dark,
@@ -276,9 +278,6 @@ class _AvalaibleTimeState extends State<AvalaibleTime> {
               },
             ),
           ),
-          SizedBox(
-            height: 10.h,
-          )
         ],
       ),
     );

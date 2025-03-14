@@ -41,7 +41,7 @@ class DetailedDoctorScreen extends StatelessWidget {
                       width: 100.w,
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 15.h,
                     ),
                     Column(
                       children: [
@@ -85,7 +85,7 @@ class DetailedDoctorScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 15.w,
+                  height: 15.h,
                 ),
                 Row(
                   children: [
@@ -96,15 +96,15 @@ class DetailedDoctorScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 15.w,
+                  height: 10.h,
                 ),
                 AvalaibleTime(),
                 SizedBox(
-                  height: 15.w,
+                  height: 10.w,
                 ),
                 BookAppointmentButton(docLocation: doctor.city?.name ?? ''),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 30.h,
                 )
                 // Text(doctor.city?.name ?? ''),
                 // Text(doctor.city?.governrate?.name ?? ''),
