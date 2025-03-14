@@ -1,16 +1,6 @@
-# vcare
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![IMG_5847.jpeg](IMG_5847.jpeg)
+![IMG_5846.jpeg](IMG_5846.jpeg)
+Flutter mobile application integrating a backend API to facilitate doctor appointment booking. 
+Implemented essential features such as user authentication sign-up and sign-in, 
+displays doctor specializations, available doctors and allows users to select appointment dates/times, 
+and provides a history of past reservations.
